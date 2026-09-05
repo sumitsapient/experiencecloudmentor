@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses');
+  return courses.map((course) => ({
+    params: { slug: course.data.slug },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props;
+const { data } = course;
+const { Content } = await render(course);
+---
+
+<BaseLayout title={data.title} description={data.tagline}>
+  <Header />
+  <main class="flex-1">
+    <section class="bg-brand-50/60">
+      <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+        <a href="/courses" class="text-sm font-semibold text-brand-600 hover:underline">← All courses</a>
+        <span class="mt-4 inline-block rounded-full bg-brand-100 px-4 py-1 text-xs font-semibold text-brand-700">
+          {data.category}
+        </span>
+        <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">{data.title}</h1>
+        <p class="mt-4 text-lg text-ink-500">{data.tagline}</p>
+
+        <div class="mt-6 flex flex-wrap gap-6 text-sm font-medium text-ink-700">
+          <span><strong class="text-ink-900">Level:</strong> {data.level}</span>
+          <span><strong class="text-ink-900">Duration:</strong> {data.duration}</span>
+          <span><strong class="text-ink-900">Mode:</strong> {data.deliveryMode}</span>
+        </div>
+
+        {data.pacingOptions.length > 0 && (
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            {data.pacingOptions.map((option) => (
+              <div class="rounded-xl border border-brand-200 bg-white p-4">
+                <p class="text-sm font-semibold text-brand-700">{option.label}</p>
+                <p class="mt-1 text-sm text-ink-700">{option.schedule}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <a
+          href="/contact"
+          class="mt-8 inline-block rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
+        >
+          Enquire About This Course
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto grid max-w-4xl gap-12 px-4 py-16 sm:px-6 lg:px-8 md:grid-cols-3">
+      <div class="md:col-span-2">
+        <h2 class="text-xl font-bold text-ink-900">Overview</h2>
+        <div class="prose prose-slate mt-4 max-w-none text-ink-700">
+          <Content />
+        </div>
+
+        <h2 class="mt-10 text-xl font-bold text-ink-900">Curriculum</h2>
+        <div class="mt-4 space-y-4">
+          {data.curriculum.map((mod, i) => (
+            <details class="group rounded-xl border border-ink-100 p-4 open:shadow-sm" open={i === 0}>
+              <summary class="cursor-pointer list-none font-semibold text-ink-900 marker:content-none">
+                <span class="flex items-center justify-between">
+                  {mod.module}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-ink-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <ul class="mt-3 list-inside list-disc space-y-1 text-sm text-ink-700">
+                {mod.topics.map((topic) => <li>{topic}</li>)}
+              </ul>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <aside class="space-y-8">
+        {data.whoIsThisFor.length > 0 && (
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-ink-500">Who is this for</h3>
+            <ul class="mt-3 space-y-2 text-sm text-ink-700">
+              {data.whoIsThisFor.map((item) => <li>• {item}</li>)}
+            </ul>
+          </div>
+        )}
+        {data.prerequisites.length > 0 && (
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-ink-500">Prerequisites</h3>
+            <ul class="mt-3 space-y-2 text-sm text-ink-700">
+              {data.prerequisites.map((item) => <li>• {item}</li>)}
+            </ul>
+          </div>
+        )}
+        {data.outcomes.length > 0 && (
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-ink-500">You'll be able to</h3>
+            <ul class="mt-3 space-y-2 text-sm text-ink-700">
+              {data.outcomes.map((item) => <li>• {item}</li>)}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  tagline: string;
+  category: string;
+  level: string;
+  duration: string;
+  featured?: boolean;
+}
+const { slug, title, tagline, category, level, duration, featured = false } = Astro.props;
+---
+
+<a
+  href={`/courses/${slug}`}
+  class:list={[
+    'group flex flex-col rounded-2xl border p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg',
+    featured ? 'border-brand-200 bg-brand-50/50' : 'border-ink-100 bg-white',
+  ]}
+>
+  <div class="flex items-center justify-between">
+    <span class="rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-700">{category}</span>
+    {featured && (
+      <span class="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">Popular</span>
+    )}
+  </div>
+  <h3 class="mt-4 text-lg font-bold text-ink-900 group-hover:text-brand-600">{title}</h3>
+  <p class="mt-2 text-sm text-ink-500">{tagline}</p>
+  <div class="mt-4 flex items-center gap-4 text-xs font-medium text-ink-500">
+    <span>{level}</span>
+    <span aria-hidden="true">•</span>
+    <span>{duration}</span>
+  </div>
+  <span class="mt-4 inline-flex items-center text-sm font-semibold text-brand-600">
+    View curriculum
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  </span>
+</a>

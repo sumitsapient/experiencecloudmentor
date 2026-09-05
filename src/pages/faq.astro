@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: 'Do you offer 1:1 sessions or only batches?',
+    a: 'Both. You can opt for personalized 1:1 mentoring or join a small-batch cohort, depending on your budget and learning preference.',
+  },
+  {
+    q: 'What are the batch timings?',
+    a: 'Timings are fully flexible. Once you choose a Weekday (3 sessions/week) or Weekend (2 sessions/week) track, we schedule exact slots together based on your timezone and availability — this works well for both India-based students and international learners. Slots are finalized on a quick discovery call before the course begins.',
+  },
+  {
+    q: 'How is the training priced?',
+    a: "Pricing depends on the course, format (1:1 vs. batch), and pacing you choose, so I share a custom quote after a short discovery call to understand your goals and current experience level. Reach out via the contact form, email, or WhatsApp and we'll take it from there.",
+  },
+  {
+    q: 'Will this help me clear Adobe certification exams?',
+    a: 'Yes, the curriculum is aligned with the official certification blueprints, and we cover exam-relevant scenarios and practice questions.',
+  },
+  {
+    q: 'Do you provide certificates of completion?',
+    a: "I don't issue a formal certificate at this time, but every student gets 2 weeks of doubt-clearing support after the course ends — so you're not left stuck once live sessions wrap up.",
+  },
+];
+---
+
+<BaseLayout title="FAQ">
+  <Header />
+  <main class="flex-1">
+    <section class="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
+      <span class="inline-block rounded-full bg-brand-100 px-4 py-1 text-xs font-semibold text-brand-700">FAQ</span>
+      <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">Frequently Asked Questions</h1>
+
+      <div class="mt-10 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-xl border border-ink-100 p-5 open:shadow-sm">
+            <summary class="cursor-pointer list-none font-semibold text-ink-900 marker:content-none">
+              <span class="flex items-center justify-between gap-4">
+                {item.q}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 text-ink-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-ink-700">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
