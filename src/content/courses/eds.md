@@ -6,6 +6,7 @@ category: "EDS"
 level: "Beginner to Advanced"
 duration: "4 weeks (weekday) or ~6 weeks (weekend)"
 deliveryMode: "Live online, 1:1 or small batch"
+instructor: "Sumit Yadav"
 pacingOptions:
   - label: "Weekday Track"
     schedule: "3 sessions/week, 1 hour each — 4 weeks total"

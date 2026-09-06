@@ -1,11 +1,12 @@
 ---
 title: "Adobe Journey Optimizer (AJO) Training"
 slug: "ajo"
-tagline: "Design and orchestrate real-time, cross-channel customer journeys."
+tagline: "Design and orchestrate real-time, cross-channel customer journeys on Adobe Experience Platform (AEP)."
 category: "AJO"
 level: "Intermediate"
 duration: "4 weeks (weekday) or ~6 weeks (weekend)"
 deliveryMode: "Live online, 1:1 or small batch"
+instructor: "Gaurav Agarwal"
 pacingOptions:
   - label: "Weekday Track"
     schedule: "3 sessions/week, 1 hour each — 4 weeks total"
@@ -43,7 +44,7 @@ curriculum:
       - "Optimization strategies"
 ---
 
-Adobe Journey Optimizer lets you orchestrate real-time, cross-channel customer journeys — this course takes you from basic journey concepts to advanced orchestration, hands-on.
+Adobe Journey Optimizer — built on Adobe Experience Platform (AEP) — lets you orchestrate real-time, cross-channel customer journeys — this course takes you from basic journey concepts to advanced orchestration, hands-on.
 
 As an Adobe Certified Expert in Journey Optimizer, I focus on practical, job-ready skills: building branching journeys, configuring event-based triggers, and personalizing content across email, push, and in-app channels — using realistic campaign scenarios, not just theory.
 

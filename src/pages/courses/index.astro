@@ -33,6 +33,7 @@ const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b
             level={course.data.level}
             duration={course.data.duration}
             featured={course.data.featured}
+            instructor={course.data.instructor}
           />
         ))}
       </div>

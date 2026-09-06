@@ -11,6 +11,7 @@ const courses = defineCollection({
     level: z.enum(['Beginner', 'Intermediate', 'Advanced', 'Beginner to Advanced']),
     duration: z.string(),
     deliveryMode: z.string(),
+    instructor: z.enum(['Sumit Yadav', 'Gaurav Agarwal']).default('Sumit Yadav'),
     pacingOptions: z
       .array(
         z.object({
@@ -33,4 +34,17 @@ const courses = defineCollection({
   }),
 });
 
-export const collections = { courses };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    description: z.string(),
+    author: z.enum(['Sumit Yadav', 'Gaurav Agarwal']),
+    publishDate: z.coerce.date(),
+    tags: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
+  }),
+});
+
+export const collections = { courses, blog };

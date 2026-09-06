@@ -7,8 +7,9 @@ interface Props {
   level: string;
   duration: string;
   featured?: boolean;
+  instructor?: string;
 }
-const { slug, title, tagline, category, level, duration, featured = false } = Astro.props;
+const { slug, title, tagline, category, level, duration, featured = false, instructor } = Astro.props;
 ---
 
 <a
@@ -31,6 +32,7 @@ const { slug, title, tagline, category, level, duration, featured = false } = As
     <span aria-hidden="true">•</span>
     <span>{duration}</span>
   </div>
+  {instructor && <p class="mt-2 text-xs font-medium text-ink-500">Trained by {instructor}</p>}
   <span class="mt-4 inline-flex items-center text-sm font-semibold text-brand-600">
     View curriculum
     <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

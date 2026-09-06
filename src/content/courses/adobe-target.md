@@ -6,6 +6,7 @@ category: "Adobe Target"
 level: "Beginner"
 duration: "3 weeks (weekday) or ~4-5 weeks (weekend)"
 deliveryMode: "Live online, 1:1 or small batch"
+instructor: "Gaurav Agarwal"
 pacingOptions:
   - label: "Weekday Track"
     schedule: "3 sessions/week, 1 hour each — 3 weeks total"

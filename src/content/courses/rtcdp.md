@@ -1,11 +1,12 @@
 ---
 title: "Real-Time CDP (RTCDP) Training"
 slug: "rtcdp"
-tagline: "Learn to build unified customer profiles and activate real-time audiences."
+tagline: "Learn to build unified customer profiles and activate real-time audiences with Adobe Experience Platform (AEP)."
 category: "RTCDP"
 level: "Intermediate"
 duration: "4 weeks (weekday) or ~6 weeks (weekend)"
 deliveryMode: "Live online, 1:1 or small batch"
+instructor: "Gaurav Agarwal"
 pacingOptions:
   - label: "Weekday Track"
     schedule: "3 sessions/week, 1 hour each — 4 weeks total"
@@ -44,7 +45,7 @@ curriculum:
       - "Privacy and consent management"
 ---
 
-Adobe Real-Time CDP is at the heart of modern customer data strategy — this course gets you hands-on with it from day one, no prior CDP experience required.
+Adobe Real-Time CDP — a core application of Adobe Experience Platform (AEP) — is at the heart of modern customer data strategy — this course gets you hands-on with it from day one, no prior CDP experience required.
 
 As an Adobe Certified Expert in Real-Time CDP, I focus on what matters on the job: clean schemas and identity graphs, unified profiles, and activating audiences marketing teams can actually use — through realistic datasets, not just documentation walkthroughs.
 

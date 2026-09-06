@@ -6,6 +6,7 @@ category: "AEM"
 level: "Beginner to Advanced"
 duration: "8 weeks (weekday) or ~12 weeks (weekend)"
 deliveryMode: "Live online, 1:1 or small batch"
+instructor: "Sumit Yadav"
 pacingOptions:
   - label: "Weekday Track"
     schedule: "3 sessions/week, 1 hour each — 8 weeks total"
