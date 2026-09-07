@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="900" height="620" fill="#ffffff" />
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">
+    The Adobe Experience Cloud Ecosystem
+  </text>
+
+  <!-- RTCDP box -->
+  <rect x="50" y="90" width="230" height="150" rx="14" fill="#eef4ff" stroke="#b7cfff" stroke-width="2" />
+  <text x="165" y="128" text-anchor="middle" font-size="16" font-weight="700" fill="#1c3bad">Real-Time CDP</text>
+  <text x="165" y="150" text-anchor="middle" font-size="12" fill="#334155">Builds unified</text>
+  <text x="165" y="167" text-anchor="middle" font-size="12" fill="#334155">customer profiles</text>
+  <text x="165" y="184" text-anchor="middle" font-size="12" fill="#334155">&amp; audiences</text>
+  <text x="165" y="210" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">"Who is this person?"</text>
+
+  <!-- AJO box -->
+  <rect x="335" y="90" width="230" height="150" rx="14" fill="#eef4ff" stroke="#b7cfff" stroke-width="2" />
+  <text x="450" y="128" text-anchor="middle" font-size="16" font-weight="700" fill="#1c3bad">Journey Optimizer</text>
+  <text x="450" y="150" text-anchor="middle" font-size="12" fill="#334155">Orchestrates emails,</text>
+  <text x="450" y="167" text-anchor="middle" font-size="12" fill="#334155">push &amp; in-app</text>
+  <text x="450" y="184" text-anchor="middle" font-size="12" fill="#334155">journeys</text>
+  <text x="450" y="210" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">"What do we say, and when?"</text>
+
+  <!-- CJA box -->
+  <rect x="620" y="90" width="230" height="150" rx="14" fill="#eef4ff" stroke="#b7cfff" stroke-width="2" />
+  <text x="735" y="128" text-anchor="middle" font-size="16" font-weight="700" fill="#1c3bad">Journey Analytics</text>
+  <text x="735" y="150" text-anchor="middle" font-size="12" fill="#334155">Measures behavior</text>
+  <text x="735" y="167" text-anchor="middle" font-size="12" fill="#334155">across every</text>
+  <text x="735" y="184" text-anchor="middle" font-size="12" fill="#334155">channel</text>
+  <text x="735" y="210" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">"Did it work?"</text>
+
+  <!-- Arrow: RTCDP -> AJO -->
+  <line x1="280" y1="165" x2="330" y2="165" stroke="#234bda" stroke-width="2.5" marker-end="url(#arrow)" />
+  <text x="305" y="150" text-anchor="middle" font-size="10" fill="#234bda">feeds</text>
+
+  <!-- Arrows down to CJA (from RTCDP and AJO) -->
+  <path d="M180,240 C 300,300 550,300 700,240" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#arrowgray)" />
+  <text x="450" y="285" text-anchor="middle" font-size="11" fill="#64748b">behavior data flows in for measurement</text>
+
+  <!-- Connectors down to AEP -->
+  <line x1="165" y1="240" x2="165" y2="420" stroke="#8bb0ff" stroke-width="2" />
+  <line x1="450" y1="240" x2="450" y2="420" stroke="#8bb0ff" stroke-width="2" />
+  <line x1="735" y1="240" x2="735" y2="420" stroke="#8bb0ff" stroke-width="2" />
+
+  <!-- AEP foundation -->
+  <rect x="50" y="420" width="800" height="110" rx="14" fill="#234bda" />
+  <text x="450" y="465" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">
+    Adobe Experience Platform (AEP)
+  </text>
+  <text x="450" y="492" text-anchor="middle" font-size="13" fill="#d9e6ff">
+    The shared data foundation — ingests, structures (XDM), and stores customer data for every app above
+  </text>
+
+  <!-- Bottom caption -->
+  <text x="450" y="565" text-anchor="middle" font-size="12" fill="#64748b">
+    AEP is the foundation. RTCDP, AJO, and CJA are apps built on top of it — each solving a different problem.
+  </text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#234bda" />
+    </marker>
+    <marker id="arrowgray" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8" />
+    </marker>
+  </defs>
+</svg>
