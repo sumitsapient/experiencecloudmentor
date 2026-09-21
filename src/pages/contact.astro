@@ -6,8 +6,8 @@ import Footer from '../components/Footer.astro';
 
 <BaseLayout
   title="Contact"
-  description="Get in touch to discuss 1:1 mentoring or small-batch training in AEM, RTCDP, AJO, or Adobe Target. Reach out via form, email, or WhatsApp."
-  keywords={['contact AEM trainer', 'Adobe Experience Cloud training enquiry']}
+  description="Get in touch to discuss a freelance/consulting project, or 1:1 mentoring and small-batch training in AEM, RTCDP, AJO, or Adobe Target. Reach out via form, email, or WhatsApp."
+  keywords={['contact AEM trainer', 'Adobe Experience Cloud training enquiry', 'hire AEM freelancer', 'Adobe Experience Cloud consulting enquiry']}
 >
   <Header />
   <main class="flex-1">
@@ -15,9 +15,10 @@ import Footer from '../components/Footer.astro';
       <span class="inline-block rounded-full bg-brand-100 px-4 py-1 text-xs font-semibold text-brand-700">
         Contact
       </span>
-      <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">Let's Talk Training</h1>
+      <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">Let's Talk</h1>
       <p class="mt-4 text-lg text-ink-500">
-        Fill out the form and I'll get back to you within 24 hours, or reach me directly via email/WhatsApp.
+        Whether it's a freelance project or training, fill out the form and I'll get back to you within 24 hours —
+        or reach me directly via email/WhatsApp.
       </p>
 
       <form
@@ -55,20 +56,35 @@ import Footer from '../components/Footer.astro';
           </div>
         </div>
 
-        <div>
-          <label for="course" class="block text-sm font-medium text-ink-700">Course of Interest</label>
-          <select
-            name="course"
-            id="course"
-            class="mt-2 block w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500"
-          >
-            <option>AEM Developer &amp; Architect Training</option>
-            <option>Real-Time CDP (RTCDP)</option>
-            <option>Adobe Journey Optimizer (AJO)</option>
-            <option>Adobe Target</option>
-            <option>Edge Delivery Services (EDS)</option>
-            <option>Not sure yet</option>
-          </select>
+        <div class="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label for="interest" class="block text-sm font-medium text-ink-700">I'm interested in</label>
+            <select
+              name="interest"
+              id="interest"
+              required
+              class="mt-2 block w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500"
+            >
+              <option>Training</option>
+              <option>Freelance / Consulting Project</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div>
+            <label for="area" class="block text-sm font-medium text-ink-700">Area of Interest</label>
+            <select
+              name="area"
+              id="area"
+              class="mt-2 block w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500"
+            >
+              <option>AEM</option>
+              <option>Real-Time CDP (RTCDP)</option>
+              <option>Adobe Journey Optimizer (AJO)</option>
+              <option>Adobe Target</option>
+              <option>Edge Delivery Services (EDS)</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
         </div>
 
         <div>
