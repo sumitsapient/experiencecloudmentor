@@ -48,4 +48,18 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { courses, blog };
+const caseStudies = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/case-studies' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    category: z.enum(['AEM', 'RTCDP', 'AJO', 'Adobe Target', 'EDS']),
+    client: z.string(),
+    problem: z.string(),
+    approach: z.string(),
+    outcome: z.string(),
+    order: z.number().default(99),
+  }),
+});
+
+export const collections = { courses, blog, caseStudies };
