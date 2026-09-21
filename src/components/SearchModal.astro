@@ -1,0 +1,118 @@
+<button
+  id="search-open"
+  type="button"
+  aria-label="Search"
+  class="inline-flex items-center justify-center rounded-md p-2 text-ink-700 hover:text-brand-600"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+  </svg>
+</button>
+
+<div id="search-overlay" class="fixed inset-0 z-[100] hidden bg-ink-900/50 px-4 pt-24 sm:pt-32">
+  <div class="mx-auto w-full max-w-lg rounded-2xl bg-white p-4 shadow-xl">
+    <div class="flex items-center gap-2 border-b border-ink-100 pb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 text-ink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+      </svg>
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search courses and articles…"
+        autocomplete="off"
+        class="w-full text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
+      />
+      <button id="search-close" type="button" aria-label="Close search" class="text-ink-400 hover:text-ink-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <ul id="search-results" class="mt-3 max-h-80 space-y-1 overflow-y-auto"></ul>
+    <p id="search-empty" class="mt-3 hidden px-1 text-sm text-ink-500">No results found.</p>
+    <p class="mt-3 hidden px-1 text-xs text-ink-400 sm:block">Press Esc to close</p>
+  </div>
+</div>
+
+<script>
+  type SearchItem = { type: string; title: string; description: string; url: string; tags: string[] };
+
+  let index: SearchItem[] | null = null;
+  let loaded = false;
+
+  const overlay = document.getElementById('search-overlay');
+  const openBtn = document.getElementById('search-open');
+  const closeBtn = document.getElementById('search-close');
+  const input = document.getElementById('search-input') as HTMLInputElement | null;
+  const results = document.getElementById('search-results');
+  const empty = document.getElementById('search-empty');
+
+  async function ensureIndex() {
+    if (loaded) return;
+    const res = await fetch('/search.json');
+    index = await res.json();
+    loaded = true;
+  }
+
+  function render(items: SearchItem[]) {
+    if (!results || !empty) return;
+    results.innerHTML = '';
+    empty.classList.toggle('hidden', items.length > 0);
+    for (const item of items) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.className = 'block rounded-lg px-3 py-2 hover:bg-ink-50';
+      a.innerHTML = `
+        <span class="block text-xs font-semibold uppercase tracking-wide text-brand-600">${item.type}</span>
+        <span class="block text-sm font-semibold text-ink-900">${item.title}</span>
+        <span class="block text-xs text-ink-500">${item.description}</span>
+      `;
+      li.appendChild(a);
+      results.appendChild(li);
+    }
+  }
+
+  function search(query: string): SearchItem[] {
+    if (!index) return [];
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    return index
+      .filter(
+        (item) =>
+          item.title.toLowerCase().includes(q) ||
+          item.description.toLowerCase().includes(q) ||
+          item.tags.some((tag) => tag.toLowerCase().includes(q))
+      )
+      .slice(0, 8);
+  }
+
+  async function openSearch() {
+    if (!overlay || !input) return;
+    overlay.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+    await ensureIndex();
+    input.focus();
+    render(search(input.value));
+  }
+
+  function closeSearch() {
+    if (!overlay) return;
+    overlay.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  openBtn?.addEventListener('click', openSearch);
+  closeBtn?.addEventListener('click', closeSearch);
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) closeSearch();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSearch();
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      openSearch();
+    }
+  });
+  input?.addEventListener('input', () => render(search(input.value)));
+</script>

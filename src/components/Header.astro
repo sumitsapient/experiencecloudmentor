@@ -1,4 +1,6 @@
 ---
+import SearchModal from './SearchModal.astro';
+
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -17,40 +19,44 @@ const currentPath = Astro.url.pathname;
       Experience<span class="text-brand-600">CloudMentor</span>
     </a>
 
-    <button
-      id="nav-toggle"
-      class="inline-flex items-center justify-center rounded-md p-2 text-ink-700 md:hidden"
-      aria-label="Toggle navigation"
-      aria-expanded="false"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
+    <div class="flex items-center gap-2">
+      <SearchModal />
 
-    <ul class="hidden items-center gap-8 md:flex">
-      {navItems.map((item) => (
+      <button
+        id="nav-toggle"
+        class="inline-flex items-center justify-center rounded-md p-2 text-ink-700 md:hidden"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <ul class="hidden items-center gap-8 md:flex">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                'text-sm font-medium transition-colors hover:text-brand-600',
+                currentPath === item.href ? 'text-brand-600' : 'text-ink-700',
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
         <li>
           <a
-            href={item.href}
-            class:list={[
-              'text-sm font-medium transition-colors hover:text-brand-600',
-              currentPath === item.href ? 'text-brand-600' : 'text-ink-700',
-            ]}
+            href="/contact"
+            class="rounded-full bg-brand-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700"
           >
-            {item.label}
+            Enroll Now
           </a>
         </li>
-      ))}
-      <li>
-        <a
-          href="/contact"
-          class="rounded-full bg-brand-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700"
-        >
-          Enroll Now
-        </a>
-      </li>
-    </ul>
+      </ul>
+    </div>
   </nav>
 
   <ul id="mobile-menu" class="hidden flex-col gap-1 border-t border-ink-100 bg-white px-4 pb-4 md:hidden">
