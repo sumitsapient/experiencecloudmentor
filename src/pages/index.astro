@@ -6,7 +6,7 @@ import CourseCard from '../components/CourseCard.astro';
 import { getCollection } from 'astro:content';
 
 const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
-const featuredCourses = courses.filter((c) => c.data.featured);
+const coursesPerPage = 3;
 
 const credentials = [
   'Adobe Certified Expert – AEM Sites Developer',
@@ -98,32 +98,109 @@ const schema = {
       </div>
     </section>
 
-    <!-- Featured Courses -->
+    <!-- Courses -->
     <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between">
         <div>
-          <h2 class="text-2xl font-bold text-ink-900 sm:text-3xl">Popular Courses</h2>
-          <p class="mt-2 text-ink-500">Start with the most in-demand training tracks.</p>
+          <h2 class="text-2xl font-bold text-ink-900 sm:text-3xl">Our Courses</h2>
+          <p class="mt-2 text-ink-500">Browse the most in-demand training tracks.</p>
         </div>
         <a href="/courses" class="hidden text-sm font-semibold text-brand-600 hover:underline sm:block">
           View all courses →
         </a>
       </div>
-      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {featuredCourses.map((course) => (
-          <CourseCard
-            slug={course.data.slug}
-            title={course.data.title}
-            tagline={course.data.tagline}
-            category={course.data.category}
-            level={course.data.level}
-            duration={course.data.duration}
-            featured={course.data.featured}
-            instructor={course.data.instructor}
-          />
-        ))}
+      <div id="courses-pagination" data-page-size={coursesPerPage}>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {courses.map((course, i) => (
+            <div class="course-page-item" data-page={Math.floor(i / coursesPerPage)}>
+              <CourseCard
+                slug={course.data.slug}
+                title={course.data.title}
+                tagline={course.data.tagline}
+                category={course.data.category}
+                level={course.data.level}
+                duration={course.data.duration}
+                featured={course.data.featured}
+                instructor={course.data.instructor}
+              />
+            </div>
+          ))}
+        </div>
+
+        {courses.length > coursesPerPage && (
+          <div class="mt-8 flex items-center justify-center gap-4">
+            <button
+              id="courses-prev"
+              type="button"
+              aria-label="Previous courses"
+              class="rounded-full border border-ink-200 p-2 text-ink-700 hover:bg-ink-50 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <div id="courses-dots" class="flex items-center gap-2"></div>
+            <button
+              id="courses-next"
+              type="button"
+              aria-label="Next courses"
+              class="rounded-full border border-ink-200 p-2 text-ink-700 hover:bg-ink-50 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   </main>
   <Footer />
 </BaseLayout>
+
+<script>
+  const container = document.getElementById('courses-pagination');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.course-page-item'));
+  const prevBtn = document.getElementById('courses-prev') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('courses-next') as HTMLButtonElement | null;
+  const dotsContainer = document.getElementById('courses-dots');
+
+  if (container && items.length > 0) {
+    const pageSize = Number(container.dataset.pageSize ?? '3');
+    const totalPages = Math.max(1, Math.ceil(items.length / pageSize));
+    let currentPage = 0;
+
+    const dots: HTMLButtonElement[] = [];
+    for (let i = 0; i < totalPages; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Go to page ${i + 1}`);
+      dot.className = 'h-2 w-2 rounded-full bg-ink-200 transition-colors';
+      dot.addEventListener('click', () => goToPage(i));
+      dotsContainer?.appendChild(dot);
+      dots.push(dot);
+    }
+
+    function render() {
+      items.forEach((item) => {
+        const page = Number(item.dataset.page ?? '0');
+        item.classList.toggle('hidden', page !== currentPage);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('bg-brand-600', i === currentPage);
+        dot.classList.toggle('bg-ink-200', i !== currentPage);
+      });
+      if (prevBtn) prevBtn.disabled = currentPage === 0;
+      if (nextBtn) nextBtn.disabled = currentPage === totalPages - 1;
+    }
+
+    function goToPage(page: number) {
+      currentPage = Math.min(Math.max(page, 0), totalPages - 1);
+      render();
+    }
+
+    prevBtn?.addEventListener('click', () => goToPage(currentPage - 1));
+    nextBtn?.addEventListener('click', () => goToPage(currentPage + 1));
+    render();
+  }
+</script>
