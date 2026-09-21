@@ -25,9 +25,24 @@ const faqs = [
     a: "I don't issue a formal certificate at this time, but every student gets 2 weeks of doubt-clearing support after the course ends — so you're not left stuck once live sessions wrap up.",
   },
 ];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
 ---
 
-<BaseLayout title="FAQ">
+<BaseLayout
+  title="FAQ"
+  description="Answers to common questions about 1:1 mentoring, batch training, pricing, certification alignment, and support for AEM, RTCDP, AJO, and Adobe Target courses."
+  keywords={['AEM training FAQ', 'Adobe Experience Cloud training', 'RTCDP course pricing', 'AJO training']}
+  schema={schema}
+>
   <Header />
   <main class="flex-1">
     <section class="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">

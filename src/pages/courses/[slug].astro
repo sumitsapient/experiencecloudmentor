@@ -37,9 +37,41 @@ const coInstructorNames =
     ? ['Sumit Yadav']
     : [];
 const trainerCards = [instructor, ...coInstructorNames.map((name) => instructors[name])];
+
+const keywords = [data.title, data.category, `${data.category} training`, `${data.category} course`, data.level, 'Adobe Experience Cloud'];
+
+const canonicalCourseURL = new URL(`/courses/${data.slug}/`, Astro.site).toString();
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: data.title,
+    description: data.tagline,
+    url: canonicalCourseURL,
+    provider: { '@type': 'EducationalOrganization', name: 'ExperienceCloudMentor', sameAs: Astro.site?.toString() },
+    educationalLevel: data.level,
+    inLanguage: 'en',
+    hasCourseInstance: (data.pacingOptions.length > 0 ? data.pacingOptions : [{ label: data.deliveryMode, schedule: data.duration }]).map((option) => ({
+      '@type': 'CourseInstance',
+      name: option.label,
+      description: option.schedule,
+      courseMode: data.deliveryMode,
+      instructor: { '@type': 'Person', name: data.instructor },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Courses', item: new URL('/courses/', Astro.site).toString() },
+      { '@type': 'ListItem', position: 3, name: data.title, item: canonicalCourseURL },
+    ],
+  },
+];
 ---
 
-<BaseLayout title={data.title} description={data.tagline}>
+<BaseLayout title={data.title} description={data.tagline} keywords={keywords} schema={schema}>
   <Header />
   <main class="flex-1">
     <section class="bg-brand-50/60">

@@ -15,9 +15,21 @@ const credentials = [
   'Adobe Certified Expert – Journey Optimizer',
   'Adobe Certified Expert – Adobe Target',
 ];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'ExperienceCloudMentor',
+  url: Astro.site,
+};
 ---
 
-<BaseLayout title="Home">
+<BaseLayout
+  title="Home"
+  description="Hands-on, project-driven Adobe Experience Cloud training in AEM, Edge Delivery Services, Real-Time CDP, Journey Optimizer, and Adobe Target — taught by Adobe Certified practitioners. 1:1 mentoring and small batch cohorts."
+  keywords={['AEM training', 'Adobe Experience Cloud training', 'RTCDP training', 'AJO training', 'Adobe Target training', 'EDS training', 'Adobe certified trainer']}
+  schema={schema}
+>
   <Header />
   <main class="flex-1">
     <!-- Hero -->

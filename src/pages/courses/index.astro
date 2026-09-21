@@ -6,9 +6,25 @@ import CourseCard from '../../components/CourseCard.astro';
 import { getCollection } from 'astro:content';
 
 const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: courses.map((course, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: new URL(`/courses/${course.data.slug}/`, Astro.site).toString(),
+    name: course.data.title,
+  })),
+};
 ---
 
-<BaseLayout title="Courses">
+<BaseLayout
+  title="Courses"
+  description="Hands-on courses covering AEM development, AEM architecture, EDS, RTCDP, AJO, and Adobe Target — delivered live, 1:1 or in small batches."
+  keywords={['AEM courses', 'RTCDP training', 'AJO training', 'Adobe Target training', 'EDS training', 'Adobe Experience Cloud courses']}
+  schema={schema}
+>
   <Header />
   <main class="flex-1">
     <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">

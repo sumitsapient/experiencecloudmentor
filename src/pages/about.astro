@@ -47,9 +47,26 @@ const trainers = [
     ],
   },
 ];
+
+const schema = trainers.map((trainer) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: trainer.name,
+  jobTitle: trainer.title,
+  description: trainer.shortBio,
+  image: new URL(trainer.photo, Astro.site).toString(),
+  sameAs: [trainer.linkedin],
+  worksFor: { '@type': 'EducationalOrganization', name: 'ExperienceCloudMentor' },
+  hasCredential: trainer.certifications.map((cert) => ({ '@type': 'EducationalOccupationalCredential', name: cert })),
+}));
 ---
 
-<BaseLayout title="About">
+<BaseLayout
+  title="About"
+  description="Meet the certified Adobe Experience Cloud trainers behind ExperienceCloudMentor — hands-on, project-driven training in AEM, RTCDP, AJO, and Adobe Target."
+  keywords={['Adobe certified trainer', 'AEM instructor', 'Adobe Experience Cloud trainers', 'Sumit Yadav', 'Gaurav Agarwal']}
+  schema={schema}
+>
   <Header />
   <main class="flex-1">
     <section class="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
