@@ -4,7 +4,7 @@ slug: "identity-stitching-shared-devices-aep"
 description: "John logs in, then Jane, then John again — same browser, same ECID. Here's how Adobe Experience Platform's identity graph avoids collapsing them into one person."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-19
-tags: ["AEP", "Identity Service", "RTCDP", "AJO"]
+tags: ["AEP", "RTCDP", "AJO"]
 featured: false
 ---
 

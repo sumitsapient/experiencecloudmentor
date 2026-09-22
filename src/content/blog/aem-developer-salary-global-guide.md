@@ -4,7 +4,7 @@ slug: "aem-developer-salary-global-guide"
 description: "How much do AEM developers actually earn across the US, UK, Germany, Australia, and the UAE? A grounded, multi-country look at ranges by experience level."
 author: "Sumit Yadav"
 publishDate: 2026-09-22
-tags: ["AEM", "Career", "Salary"]
+tags: ["AEM"]
 featured: false
 ---
 

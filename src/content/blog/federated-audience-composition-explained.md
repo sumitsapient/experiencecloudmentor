@@ -4,7 +4,7 @@ slug: "federated-audience-composition-explained"
 description: "How Adobe Experience Platform's Federated Audience Composition lets you build and activate audiences from your enterprise data warehouse without ingesting everything into AEP first."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-14
-tags: ["AEP", "RTCDP", "Federated Audience Composition"]
+tags: ["AEP", "RTCDP"]
 featured: false
 ---
 

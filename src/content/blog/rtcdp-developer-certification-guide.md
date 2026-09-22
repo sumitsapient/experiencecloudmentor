@@ -4,7 +4,7 @@ slug: "rtcdp-developer-certification-guide"
 description: "What the Real-Time CDP Developer Expert exam actually tests, how the modules are weighted, and a realistic study plan to pass it."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-22
-tags: ["RTCDP", "Certification", "AEP"]
+tags: ["RTCDP", "AEP"]
 featured: false
 ---
 

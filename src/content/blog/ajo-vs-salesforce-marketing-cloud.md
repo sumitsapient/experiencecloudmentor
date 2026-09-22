@@ -4,7 +4,7 @@ slug: "ajo-vs-salesforce-marketing-cloud"
 description: "Choosing between Adobe Journey Optimizer and Salesforce Marketing Cloud? Here's how they actually differ on journey orchestration, CRM integration, and channel execution."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-20
-tags: ["AJO", "Salesforce Marketing Cloud", "RTCDP"]
+tags: ["AJO", "RTCDP"]
 featured: false
 ---
 

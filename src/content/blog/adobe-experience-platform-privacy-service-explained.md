@@ -4,7 +4,7 @@ slug: "adobe-experience-platform-privacy-service-explained"
 description: "A practical look at how Adobe Experience Platform Privacy Service orchestrates access and deletion requests across RTCDP, AJO, Analytics, Target, and more."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-15
-tags: ["AEP", "Privacy Service", "GDPR", "RTCDP"]
+tags: ["AEP", "RTCDP"]
 featured: false
 ---
 

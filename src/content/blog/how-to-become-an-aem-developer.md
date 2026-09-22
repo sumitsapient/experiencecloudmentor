@@ -4,7 +4,7 @@ slug: "how-to-become-an-aem-developer"
 description: "The actual path from zero to working AEM developer — skills, prerequisites, certifications, and the mistakes that slow people down most."
 author: "Sumit Yadav"
 publishDate: 2026-09-22
-tags: ["AEM", "Career"]
+tags: ["AEM"]
 featured: false
 ---
 

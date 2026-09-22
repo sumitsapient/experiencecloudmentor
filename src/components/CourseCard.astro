@@ -15,7 +15,7 @@ const { slug, title, tagline, category, level, duration, featured = false, instr
 <a
   href={`/courses/${slug}`}
   class:list={[
-    'group flex flex-col rounded-2xl border p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg',
+    'group flex h-full flex-col rounded-2xl border p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg',
     featured ? 'border-brand-200 bg-brand-50/50' : 'border-ink-100 bg-white',
   ]}
 >
@@ -33,7 +33,7 @@ const { slug, title, tagline, category, level, duration, featured = false, instr
     <span>{duration}</span>
   </div>
   {instructor && <p class="mt-2 text-xs font-medium text-ink-500">Trained by {instructor}</p>}
-  <span class="mt-4 inline-flex items-center text-sm font-semibold text-brand-600">
+  <span class="mt-auto inline-flex items-center pt-4 text-sm font-semibold text-brand-600">
     View curriculum
     <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
