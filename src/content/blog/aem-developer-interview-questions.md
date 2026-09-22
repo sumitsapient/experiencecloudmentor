@@ -4,7 +4,7 @@ slug: "aem-developer-interview-questions"
 description: "Real AEM interview questions grouped by what they're actually testing, with the kind of depth interviewers are looking for — not just a Q&A list."
 author: "Sumit Yadav"
 publishDate: 2026-09-22
-tags: ["AEM", "Career", "Interview Questions"]
+tags: ["AEM"]
 featured: false
 ---
 

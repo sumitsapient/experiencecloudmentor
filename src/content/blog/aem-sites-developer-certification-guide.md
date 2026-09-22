@@ -4,7 +4,7 @@ slug: "aem-sites-developer-certification-guide"
 description: "A practical study plan for the Adobe Certified AEM Sites Developer exam — what it actually tests, how to prepare, and the mistakes that cost people the most points."
 author: "Sumit Yadav"
 publishDate: 2026-09-22
-tags: ["AEM", "Certification"]
+tags: ["AEM"]
 featured: false
 ---
 

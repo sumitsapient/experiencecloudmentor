@@ -4,7 +4,7 @@ slug: "rtcdp-vs-salesforce-data-cloud"
 description: "A practical comparison of Adobe Real-Time CDP and Salesforce Data Cloud — how they differ on real-time activation, data architecture, and which one fits your stack."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-20
-tags: ["RTCDP", "Salesforce Data Cloud", "CDP Comparison", "AEP"]
+tags: ["RTCDP", "AEP"]
 featured: false
 ---
 

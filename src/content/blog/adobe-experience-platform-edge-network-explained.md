@@ -4,7 +4,7 @@ slug: "adobe-experience-platform-edge-network-explained"
 description: "A plain-language look at how the AEP Edge Network, datastreams, and XDM work together to collect and route experience data to RTCDP, AJO, Analytics, and CJA."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-06
-tags: ["AEP", "Edge Network", "RTCDP"]
+tags: ["AEP", "RTCDP"]
 featured: false
 ---
 

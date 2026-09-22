@@ -4,7 +4,7 @@ slug: "aem-vs-edge-delivery-services"
 description: "Traditional AEM or Edge Delivery Services? A practical breakdown of when each makes sense — for new builds, existing sites, and headless architectures."
 author: "Sumit Yadav"
 publishDate: 2026-09-21
-tags: ["AEM", "EDS", "Headless"]
+tags: ["AEM", "EDS"]
 featured: false
 ---
 

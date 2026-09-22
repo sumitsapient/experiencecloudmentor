@@ -4,7 +4,7 @@ slug: "aep-august-2026-release-highlights"
 description: "A breakdown of the most useful August 2026 Adobe Experience Platform release updates — dataset-level access control, on-demand audience runs, batch ingestion limits, and more."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-04
-tags: ["AEP", "RTCDP", "Product Updates"]
+tags: ["AEP", "RTCDP"]
 featured: false
 ---
 
