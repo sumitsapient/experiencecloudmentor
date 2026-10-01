@@ -6,6 +6,13 @@ author: "Gaurav Agarwal"
 publishDate: 2026-09-20
 tags: ["RTCDP", "AEP"]
 featured: false
+faqs:
+  - question: "Is Adobe Real-Time CDP better than Salesforce Data Cloud?"
+    answer: "Neither is universally better. The stronger fit depends on source systems, identity design, activation channels, governance, regional architecture, operating skills, and the product editions under evaluation."
+  - question: "What should a global CDP evaluation include?"
+    answer: "Use representative regional data flows, consent states, identities, audiences, and destinations. Compare residency and access options, policy enforcement, support, operating effort, and total cost using current vendor contracts."
+  - question: "Can an organization use RTCDP and Salesforce Data Cloud together?"
+    answer: "Yes, but it needs explicit ownership for collection, identity, profile, consent, audience, and activation. Without that, duplicate pipelines and conflicting customer states can outweigh the benefits."
 ---
 
 "Should we go with Adobe or Salesforce for our CDP?" is one of the most common questions I get from teams starting a customer data platform project — and the honest answer is: it depends less on which product is "better" and more on which ecosystem your data and teams already live in.
@@ -34,8 +41,32 @@ A few questions cut through most of the debate:
 
 Neither answer is wrong — they're built for genuinely different centers of gravity, and the "right" one is almost always the one that matches where your data already lives.
 
+## Evaluate identity, not just integrations
+
+Build the same identity scenarios in both options: anonymous-to-authenticated activity, duplicate CRM records, shared devices, account relationships, and contact changes. Compare how identifiers are namespaced, merged, corrected, and exposed to destinations. The [enterprise identity namespace strategy](/blog/enterprise-identity-namespace-strategy/) provides a consistent test frame.
+
+Do not accept a large connector catalog as proof that customer profiles will be accurate. Validate field mapping, historical load, update behavior, error handling, and the destination identity each activation requires.
+
+## Add a global and regional evaluation track
+
+Map where data is collected, processed, stored, supported, and activated. For EU and Germany use cases, examine purpose limitation, minimization, consent evidence, residency options, and cross-border transfers with privacy counsel. Assess the UK separately where contracts or policy differ. For the US and Canada, account for applicable jurisdiction and use rather than treating each country as one rule.
+
+Australia, UAE, Singapore, and India may introduce different privacy, residency, contracting, support, and operational requirements depending on the deployment. Ask each vendor for current, contract-specific answers. Avoid duplicating the platform by country unless a real legal, data, or operating boundary justifies it.
+
+Compare regional destination availability and identity coverage as well. An audience is not useful if the required channel is unavailable, the destination cannot receive the market's identifier, or consent cannot be enforced at export.
+
+## Run a production-shaped proof of value
+
+Choose one use case that crosses collection, identity, consent, audience evaluation, and activation. Define pass criteria before configuration: accepted and rejected records, expected profiles, a blocked consent case, audience reconciliation, destination delivery, operator effort, and recovery from a failed source.
+
+Use the same source examples and business rules for both platforms. Record qualified, eligible, exported, accepted, and addressable counts rather than comparing screenshots captured at different times. Include non-functional evidence for access control, audit, monitoring, deployment, support handoff, and deletion.
+
+Price the operating model, not only the initial license. Include ingestion, storage, profiles, queries, activation, implementation, regional environments, observability, privacy operations, training, and ongoing destination maintenance. Product packaging changes, so validate all assumptions against current proposals.
+
+If both platforms will coexist, name the authoritative system for identity, profile attributes, consent, audiences, and activation. A deliberate boundary can work; two competing golden records usually create reconciliation work and customer risk.
+
 ## Where to start
 
-If you're leaning toward Adobe's ecosystem, our [RTCDP course](/courses/rtcdp) covers identity resolution, schema design, and audience activation from the ground up — the exact skills you'd need to actually run a CDP, not just choose one.
+If you're leaning toward Adobe's ecosystem, our [RTCDP course](/courses/rtcdp/) covers identity resolution, schema design, governance, and audience activation from the ground up. The [RTCDP vs Segment comparison](/blog/rtcdp-vs-segment/) offers another architecture reference point.
 
-Weighing this decision for your own organization? [Reach out](/contact) — happy to talk through your specific data landscape.
+Weighing this decision for your organization? [Contact us](/contact/).

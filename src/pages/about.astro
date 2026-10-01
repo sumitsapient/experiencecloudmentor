@@ -6,44 +6,69 @@ import Footer from '../components/Footer.astro';
 const highlights = [
   { label: 'Years of combined experience', value: '14+' },
   { label: 'Students trained', value: '20+' },
-  { label: 'Certifications held', value: '8' },
+  { label: 'Certifications held', value: '9' },
 ];
 
-const certificationVerifyUrl = 'https://certification.adobe.com/credential/verify/02fd0009-8270-11f1-9e60-42010a400fe7';
+const sumitArchitectVerifyUrl = 'https://certification.adobe.com/credential/verify/02fd0009-8270-11f1-9e60-42010a400fe7';
+const gauravRtcdpBusinessVerifyUrl = 'https://certification.adobe.com/credential/verify/55b71011-826e-11f1-9e60-42010a400fe7';
+const gauravAjoVerifyUrl = 'https://certification.adobe.com/credential/verify/fd3d52e6-90cd-11f1-bdd6-42010a400002';
+const gauravRtcdpDeveloperVerifyUrl = 'https://certification.adobe.com/credential/verify/d7a0fa73-827d-11f1-9e60-42010a400fe7';
+const gauravAemDeveloperVerifyUrl = 'https://certification.adobe.com/credential/verify/acdb870c-80b1-11f1-9e60-42010a400fe7';
 
 const trainers = [
   {
     anchor: 'sumit-yadav',
     name: 'Sumit Yadav',
     title: 'AEM Developer & Architect',
-    photo: '/team/sumit-yadav.jpg',
+    photo: '/team/sumit-yadav-256.jpg',
     linkedin: 'https://www.linkedin.com/in/sumit-yadav/',
     badge: '/badges/adobe-certified-master.png',
-    verifyUrl: certificationVerifyUrl,
+    badgeVerifyUrl: sumitArchitectVerifyUrl,
     shortBio:
       "With over 10 years of experience as an AEM Architect, Sumit has designed and delivered enterprise-grade Adobe Experience Cloud solutions across banking, financial services, and manufacturing — sectors where scale, security, and reliability aren't optional. He teaches the AEM Developer & Architect and Edge Delivery Services (EDS) courses.",
     certifications: [
-      'Adobe Certified Expert – AEM Sites Developer',
-      'Adobe Certified Expert – AEM Sites Architect',
-      'Adobe Certified Expert – Real-Time CDP',
-      'Adobe Certified Expert – Journey Optimizer',
-      'Adobe Certified Expert – Adobe Target',
+      { name: 'Adobe Certified Expert – AEM Sites Developer', verifyUrl: sumitArchitectVerifyUrl },
+      { name: 'Adobe Certified Expert – AEM Sites Architect', verifyUrl: sumitArchitectVerifyUrl },
+      { name: 'Adobe Certified Expert – Real-Time CDP', verifyUrl: sumitArchitectVerifyUrl },
+      { name: 'Adobe Certified Expert – Journey Optimizer', verifyUrl: sumitArchitectVerifyUrl },
+      { name: 'Adobe Certified Expert – Adobe Target', verifyUrl: sumitArchitectVerifyUrl },
     ],
   },
   {
     anchor: 'gaurav-agarwal',
     name: 'Gaurav Agarwal',
     title: 'Adobe Experience Cloud Specialist',
-    photo: '/team/gaurav-agarwal.jpg',
+    photo: '/team/gaurav-agarwal-256.jpg',
     linkedin: 'https://www.linkedin.com/in/gaurav4080/',
     badge: null,
-    verifyUrl: 'https://certification.adobe.com/credential/verify/fd3d52e6-90cd-11f1-bdd6-42010a400002',
+    badgeVerifyUrl: null,
     shortBio:
       "Gaurav is an Adobe Experience Cloud Specialist with 4+ years of hands-on experience across Real-Time CDP, Journey Optimizer, and Adobe Target. He's helped enterprise teams build unified customer profiles and launch personalization programs that actually move the needle, and brings that same practical, campaign-ready focus to teaching. He trains the RTCDP, AJO, and Adobe Target courses.",
     certifications: [
-      'Adobe Certified Expert – Real-Time CDP',
-      'Adobe Certified Expert – Journey Optimizer',
-      'Adobe Certified Expert – Adobe Target',
+      {
+        name: 'Adobe Certified Professional – Adobe Real-Time CDP Business Practitioner',
+        verifyUrl: gauravRtcdpBusinessVerifyUrl,
+        issued: 'July 2026',
+        expires: 'July 2028',
+      },
+      {
+        name: 'Adobe Certified Expert – Adobe Journey Optimizer Developer',
+        verifyUrl: gauravAjoVerifyUrl,
+        issued: 'August 2026',
+        expires: 'August 2028',
+      },
+      {
+        name: 'Adobe Certified Expert – Adobe Real-Time CDP Developer',
+        verifyUrl: gauravRtcdpDeveloperVerifyUrl,
+        issued: 'July 2026',
+        expires: 'July 2028',
+      },
+      {
+        name: 'Adobe Certified Expert – Adobe Experience Manager Sites Developer',
+        verifyUrl: gauravAemDeveloperVerifyUrl,
+        issued: 'July 2026',
+        expires: 'July 2028',
+      },
     ],
   },
 ];
@@ -51,13 +76,19 @@ const trainers = [
 const schema = trainers.map((trainer) => ({
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': new URL(`/about/#${trainer.anchor}`, Astro.site).toString(),
   name: trainer.name,
+  url: new URL(`/about/#${trainer.anchor}`, Astro.site).toString(),
   jobTitle: trainer.title,
   description: trainer.shortBio,
   image: new URL(trainer.photo, Astro.site).toString(),
   sameAs: [trainer.linkedin],
-  worksFor: { '@type': 'EducationalOrganization', name: 'ExperienceCloudMentor' },
-  hasCredential: trainer.certifications.map((cert) => ({ '@type': 'EducationalOccupationalCredential', name: cert })),
+  worksFor: { '@type': 'EducationalOrganization', '@id': `${Astro.site}#organization`, name: 'ExperienceCloudMentor' },
+  hasCredential: trainer.certifications.map((cert) => ({
+    '@type': 'EducationalOccupationalCredential',
+    name: cert.name,
+    ...(cert.verifyUrl ? { url: cert.verifyUrl } : {}),
+  })),
 }));
 ---
 
@@ -127,7 +158,7 @@ const schema = trainers.map((trainer) => ({
               <div class="flex items-center gap-4">
                 <h3 class="text-sm font-semibold uppercase tracking-wide text-ink-500">Certifications</h3>
                 {trainer.badge && (
-                  <a href={trainer.verifyUrl} target="_blank" rel="noopener noreferrer" class="flex-shrink-0">
+                  <a href={trainer.badgeVerifyUrl} target="_blank" rel="noopener noreferrer" class="flex-shrink-0">
                     <img
                       src={trainer.badge}
                       alt="Adobe Certified Master badge"
@@ -141,20 +172,25 @@ const schema = trainers.map((trainer) => ({
               <ul class="space-y-2">
                 {trainer.certifications.map((cert) => (
                   <li>
-                    {trainer.verifyUrl ? (
+                    {cert.verifyUrl ? (
                       <a
-                        href={trainer.verifyUrl}
+                        href={cert.verifyUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex items-center gap-1.5 text-ink-700 underline decoration-ink-300 underline-offset-4 hover:text-brand-600 hover:decoration-brand-400"
                       >
-                        {cert}
+                        {cert.name}
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </a>
                     ) : (
-                      <span class="text-ink-700">{cert}</span>
+                      <span class="text-ink-700">{cert.name}</span>
+                    )}
+                    {cert.issued && cert.expires && (
+                      <span class="mt-0.5 block text-xs text-ink-500">
+                        Issued {cert.issued} · Expires {cert.expires}
+                      </span>
                     )}
                   </li>
                 ))}

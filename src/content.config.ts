@@ -41,10 +41,28 @@ const blog = defineCollection({
     slug: z.string(),
     description: z.string(),
     author: z.enum(['Sumit Yadav', 'Gaurav Agarwal']),
+    reviewedBy: z.enum(['Sumit Yadav', 'Gaurav Agarwal']).optional(),
     publishDate: z.coerce.date(),
+    modifiedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
     ogImage: z.string().optional(),
+    faqs: z
+      .array(
+        z.object({
+          question: z.string(),
+          answer: z.string(),
+        })
+      )
+      .default([]),
+    sources: z
+      .array(
+        z.object({
+          title: z.string(),
+          url: z.string().url(),
+        })
+      )
+      .default([]),
   }),
 });
 
@@ -54,8 +72,13 @@ const caseStudies = defineCollection({
     title: z.string(),
     slug: z.string(),
     category: z.enum(['AEM', 'RTCDP', 'AJO', 'Adobe Target', 'EDS']),
-    client: z.string(),
+    clientProfile: z.string(),
+    industry: z.string(),
+    region: z.string(),
+    consultant: z.enum(['Sumit Yadav', 'Gaurav Agarwal']),
+    technologies: z.array(z.string()).default([]),
     problem: z.string(),
+    constraints: z.array(z.string()).default([]),
     approach: z.string(),
     outcome: z.string(),
     order: z.number().default(99),

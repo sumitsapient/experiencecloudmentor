@@ -1,14 +1,26 @@
 ---
-title: "From Campaigns to Journeys: How AEP and AJO Change the Way You Think About Marketing"
+title: "AEP and AJO: How Real-Time Journey Orchestration Works"
 slug: "aep-ajo-real-time-journey-orchestration"
-description: "Traditional campaign marketing asks which audience gets which message. AEP and Adobe Journey Optimizer ask a different question: what's the most relevant experience for this customer right now?"
+description: "Learn how Adobe Experience Platform and Adobe Journey Optimizer work together to turn unified customer data into event-driven, real-time journeys."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-07
+modifiedDate: 2026-10-01
 tags: ["AEP", "AJO", "RTCDP"]
 featured: false
+ogImage: "/blog/aep-ajo-journeys-og.png"
+sources: [{ title: "Adobe Experience League: Adobe Journey Optimizer documentation", url: "https://experienceleague.adobe.com/en/docs/journey-optimizer/using/ajo-home" }]
+faqs:
+  - question: "How do AEP and AJO work together?"
+    answer: "AEP collects and unifies customer data and events, while AJO uses those profiles and signals to decide, personalize, and coordinate the next interaction across channels."
+  - question: "What is real-time journey orchestration?"
+    answer: "Real-time journey orchestration adapts customer interactions in response to current events, profile changes, and behavior rather than relying only on fixed campaign schedules."
+  - question: "Do you need AEP to use Adobe Journey Optimizer?"
+    answer: "AJO is built on Adobe Experience Platform and uses its profiles, events, identity, and governance capabilities as the data foundation for journey orchestration."
 ---
 
-Why are some of the world's biggest brands investing in Adobe Experience Platform (AEP) combined with Adobe Journey Optimizer (AJO)? Because traditional marketing often looks like this: collect data, build an audience, create a campaign, schedule it, send it, analyze it. By the time the customer actually receives the message, their intent may have already changed.
+**Adobe Experience Platform (AEP) supplies unified customer profiles and real-time events; Adobe Journey Optimizer (AJO) uses those profiles and signals to decide and coordinate the next customer interaction.** Together they shift marketing from fixed campaign schedules toward journeys that respond to current behavior.
+
+Traditional marketing often looks like this: collect data, build an audience, create a campaign, schedule it, send it, analyze it. By the time the customer receives the message, their intent may have already changed.
 
 ## Think of it as the difference between a mailing list and a conversation
 
@@ -38,6 +50,6 @@ A customer browses a product page, adds an item to their cart, and leaves withou
 
 ## Where to start
 
-Once you understand this shift, AEP and AJO stop looking like just another pair of Adobe tools and start looking like the architecture behind modern, real-time marketing. Our [RTCDP course](/courses/rtcdp) covers how the unified profile gets built, and our [AJO course](/courses/ajo) covers how to design and orchestrate the journeys that act on it — the two are designed to work well together.
+Once you understand this shift, AEP and AJO stop looking like just another pair of Adobe tools and start looking like the architecture behind modern, real-time marketing. Our [RTCDP course](/courses/rtcdp/) covers how the unified profile gets built, and our [AJO course](/courses/ajo/) covers how to design and orchestrate the journeys that act on it — the two are designed to work well together.
 
-Not sure which one to start with? [Reach out](/contact) and we'll point you in the right direction based on where you're starting from.
+Not sure which one to start with? [Reach out](/contact/) and we'll point you in the right direction based on where you're starting from.

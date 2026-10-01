@@ -4,10 +4,11 @@ import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import BlogPostCard from '../../../components/BlogPostCard.astro';
 import { getCollection } from 'astro:content';
-import { slugifyTag } from '../../../utils/tags';
+import { isPublished } from '../../../utils/posts';
+import { getTopicGuide, slugifyTag } from '../../../utils/tags';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = (await getCollection('blog')).filter((post) => isPublished(post.data.publishDate));
   const tagMap = new Map<string, { label: string; posts: typeof posts }>();
 
   for (const post of posts) {
@@ -28,33 +29,78 @@ export async function getStaticPaths() {
 }
 
 const { label, posts } = Astro.props;
+const guide = getTopicGuide(Astro.params.tag!, label);
+const canonicalURL = new URL(`/blog/tags/${Astro.params.tag}/`, Astro.site).toString();
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: `Articles tagged "${label}"`,
-  url: new URL(`/blog/tags/${Astro.params.tag}/`, Astro.site).toString(),
-};
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: guide.title,
+    description: guide.description,
+    url: canonicalURL,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: posts.map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: post.data.title,
+        url: new URL(`/blog/${post.data.slug}/`, Astro.site).toString(),
+      })),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.site).toString() },
+      { '@type': 'ListItem', position: 3, name: guide.title, item: canonicalURL },
+    ],
+  },
+];
 ---
 
 <BaseLayout
-  title={`#${label}`}
-  description={`Articles tagged "${label}" — practical write-ups on AEM, EDS, RTCDP, AJO, and Adobe Target.`}
+  title={guide.title}
+  description={guide.description}
   schema={schema}
 >
   <Header />
   <main class="flex-1">
     <section class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-      <a href="/blog" class="text-sm font-semibold text-brand-600 hover:underline">← All articles</a>
+      <a href="/blog/" class="text-sm font-semibold text-brand-600 hover:underline">← All articles</a>
       <span class="mt-6 inline-block rounded-full bg-brand-100 px-4 py-1 text-xs font-semibold text-brand-700">
-        Tag
+        Topic Guide
       </span>
       <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">
-        Articles tagged &ldquo;{label}&rdquo;
+        {guide.title}
       </h1>
-      <p class="mt-4 text-ink-500">{posts.length} article{posts.length === 1 ? '' : 's'}</p>
+      <p class="mt-4 max-w-3xl text-lg leading-relaxed text-ink-700">{guide.introduction}</p>
 
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="mt-8 border-y border-ink-100 py-6">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-ink-500">Recommended learning path</h2>
+        <ol class="mt-4 grid gap-4 sm:grid-cols-3">
+          {guide.steps.map((step, index) => (
+            <li class="flex gap-3 text-sm text-ink-700">
+              <span class="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-brand-100 text-xs font-bold text-brand-700">{index + 1}</span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+        {guide.course && (
+          <a href={guide.course.href} class="mt-5 inline-block text-sm font-semibold text-brand-600 hover:underline">
+            {guide.course.label} →
+          </a>
+        )}
+      </div>
+
+      <div class="mt-10 flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-bold text-ink-900">Latest {label} articles</h2>
+        <p class="text-sm text-ink-500">{posts.length} article{posts.length === 1 ? '' : 's'}</p>
+      </div>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
         {posts.map((post) => (
           <BlogPostCard
             slug={post.data.slug}
