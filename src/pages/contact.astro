@@ -17,8 +17,8 @@ import Footer from '../components/Footer.astro';
       </span>
       <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">Let's Talk</h1>
       <p class="mt-4 text-lg text-ink-500">
-        Whether it's a freelance project or training, fill out the form and I'll get back to you within 24 hours —
-        or reach me directly via email/WhatsApp.
+        Whether it's a freelance project or training, fill out the form and we'll get back to you within 24 hours.
+        We work remotely worldwide and schedule calls and live training around your time zone.
       </p>
 
       <form
@@ -51,6 +51,30 @@ import Footer from '../components/Footer.astro';
               name="email"
               id="email"
               required
+              class="mt-2 block w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500"
+            />
+          </div>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label for="country" class="block text-sm font-medium text-ink-700">Country or Region</label>
+            <input
+              type="text"
+              name="country"
+              id="country"
+              autocomplete="country-name"
+              required
+              class="mt-2 block w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500"
+            />
+          </div>
+          <div>
+            <label for="timezone" class="block text-sm font-medium text-ink-700">Time Zone</label>
+            <input
+              type="text"
+              name="timezone"
+              id="timezone"
+              placeholder="e.g. EST, GMT, CET"
               class="mt-2 block w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500"
             />
           </div>

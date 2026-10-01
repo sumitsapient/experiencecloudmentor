@@ -1,14 +1,26 @@
 ---
-title: "How to Pass the AEM Sites Developer Certification"
+title: "AEM Developer Certification: Exam Guide and Study Plan"
 slug: "aem-sites-developer-certification-guide"
-description: "A practical study plan for the Adobe Certified AEM Sites Developer exam — what it actually tests, how to prepare, and the mistakes that cost people the most points."
+description: "Prepare for the Adobe AEM Developer certification with a seven-week study plan covering Sling, HTL, components, Dispatcher, workflows, and Cloud Service."
 author: "Sumit Yadav"
 publishDate: 2026-09-22
+modifiedDate: 2026-10-01
 tags: ["AEM"]
 featured: false
+ogImage: "/blog/aem-certification-og.png"
+sources: [{ title: "Adobe Certification Portal: Certification catalog", url: "https://certification.adobe.com/certifications/landing" }]
+faqs:
+  - question: "How should I prepare for the AEM Developer certification?"
+    answer: "Combine the current official exam guide with hands-on practice in Sling, HTL, components, Dispatcher, workflows, and AEM as a Cloud Service, then practice scenario-based questions under time limits."
+  - question: "Is hands-on AEM experience necessary for the certification exam?"
+    answer: "Hands-on experience is strongly recommended because many questions test how AEM concepts apply to realistic implementation scenarios rather than simple product recall."
+  - question: "Which AEM topics are commonly under-studied?"
+    answer: "Dispatcher caching, workflows, request resolution, and Cloud Service-specific development are commonly under-studied compared with component development."
 ---
 
-Every year I work with students who've read every AEM doc page they can find and still fail the AEM Sites Developer exam on their first attempt. It's rarely a knowledge problem — it's almost always a preparation-strategy problem.
+**The AEM Developer certification tests whether you can apply AEM concepts in realistic development scenarios, not just recall product facts.** A strong preparation plan combines the official exam guide with hands-on practice in Sling, HTL, components, Dispatcher, workflows, and AEM as a Cloud Service.
+
+Students who read every AEM documentation page can still fail on their first attempt. It is rarely a knowledge problem; it is usually a preparation-strategy problem.
 
 ## Think of it like the exam testing judgment, not just facts
 

@@ -1,14 +1,26 @@
 ---
-title: "What Makes the Adobe Experience Platform Edge Network 'Edge'?"
+title: "Adobe Experience Platform Edge Network: How It Works"
 slug: "adobe-experience-platform-edge-network-explained"
-description: "A plain-language look at how the AEP Edge Network, datastreams, and XDM work together to collect and route experience data to RTCDP, AJO, Analytics, and CJA."
+description: "Learn how the Adobe Experience Platform Edge Network uses datastreams and XDM to collect and route experience data to Adobe applications in real time."
 author: "Gaurav Agarwal"
 publishDate: 2026-09-06
+modifiedDate: 2026-10-01
 tags: ["AEP", "RTCDP"]
 featured: false
+ogImage: "/blog/aep-edge-network-og.png"
+sources: [{ title: "Adobe Experience League: Web SDK and Experience Platform Edge Network overview", url: "https://experienceleague.adobe.com/en/docs/experience-platform/edge/home" }]
+faqs:
+  - question: "What is the Adobe Experience Platform Edge Network?"
+    answer: "It is a globally distributed data-collection and decisioning layer that receives experience events and routes them to configured Adobe applications."
+  - question: "What does a datastream do in the AEP Edge Network?"
+    answer: "A datastream is the routing configuration that determines which Adobe services receive an event collected through the Edge Network."
+  - question: "Is the AEP Edge Network the same as a CDN?"
+    answer: "No. Both use distributed edge locations, but a CDN primarily delivers content while the AEP Edge Network collects experience data and supports real-time routing and decisioning."
 ---
 
-What actually makes the Adobe Experience Platform Edge Network "edge"? It's a fair question, because the term gets used loosely. The short answer: think of it somewhat like a CDN, but for customer experience data and decisioning rather than just static content.
+**The Adobe Experience Platform Edge Network is a globally distributed data-collection and decisioning layer.** It receives experience events close to the user, standardizes them with XDM, and uses a datastream to route them to configured Adobe applications such as RTCDP, AJO, Analytics, and CJA.
+
+The simplest mental model is a CDN for customer experience data and decisioning rather than static content.
 
 ## Think of it like a CDN, but for experience data
 
@@ -21,6 +33,8 @@ Behind the scenes, the flow looks roughly like this:
 **Browser/App → Edge Network → Datastream → AEP / RTCDP / AJO / Analytics / CJA**
 
 The **datastream** acts as the routing configuration — it determines which Adobe services should receive a given incoming event. And because that same event can use a shared data model (**XDM**, the Experience Data Model), you don't need completely separate instrumentation for every Adobe product it eventually reaches.
+
+![Adobe Experience Platform Edge Network data flow from a browser or app through an SDK, Edge Network, and datastream routing to RTCDP, AJO, Analytics, and CJA](/blog/aep-edge-network-flow.png)
 
 ## Why this architecture matters
 

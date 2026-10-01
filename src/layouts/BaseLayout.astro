@@ -32,6 +32,7 @@ const {
 } = Astro.props;
 
 const siteName = 'ExperienceCloudMentor';
+const fullTitle = type === 'article' ? title : `${title} | ${siteName}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(image ?? '/og-default.png', Astro.site);
 
@@ -61,7 +62,7 @@ const allSchemas = [organizationSchema, ...extraSchemas];
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title={`${siteName} Blog`} href="/rss.xml" />
 
-    <title>{title} | Adobe Experience Cloud Training</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
     {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
@@ -72,7 +73,7 @@ const allSchemas = [organizationSchema, ...extraSchemas];
     <meta property="og:site_name" content={siteName} />
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:locale" content="en_US" />
@@ -86,7 +87,7 @@ const allSchemas = [organizationSchema, ...extraSchemas];
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
 

@@ -77,7 +77,7 @@ const schema = [
     serviceType: s.title,
     name: s.title,
     description: s.description,
-    provider: { '@type': 'EducationalOrganization', name: 'ExperienceCloudMentor', url: Astro.site?.toString() },
+    provider: { '@type': 'EducationalOrganization', '@id': `${Astro.site}#organization`, name: 'ExperienceCloudMentor' },
     areaServed: 'Worldwide',
   })),
   {
@@ -112,7 +112,7 @@ const schema = [
           full migration — across AEM, EDS, RTCDP, AJO, and Adobe Target. Remote, project-based or ongoing.
         </p>
         <a
-          href="/contact"
+          href="/contact/"
           class="mt-8 inline-block rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
         >
           Discuss Your Project
@@ -161,12 +161,26 @@ const schema = [
                   {study.data.category}
                 </span>
                 <h3 class="mt-4 text-base font-bold text-ink-900">{study.data.title}</h3>
-                <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-ink-500">{study.data.client}</p>
+                <p class="mt-2 text-sm text-ink-600">{study.data.clientProfile}</p>
+                <p class="mt-1 text-xs font-medium text-ink-500">{study.data.industry} · {study.data.region}</p>
                 <div class="mt-4 space-y-3 text-sm text-ink-700">
                   <p><strong class="text-ink-900">Problem:</strong> {study.data.problem}</p>
+                  {study.data.constraints.length > 0 && (
+                    <p><strong class="text-ink-900">Constraints:</strong> {study.data.constraints.join('; ')}</p>
+                  )}
                   <p><strong class="text-ink-900">Approach:</strong> {study.data.approach}</p>
                   <p><strong class="text-ink-900">Outcome:</strong> {study.data.outcome}</p>
                 </div>
+                {study.data.technologies.length > 0 && (
+                  <ul class="mt-4 flex flex-wrap gap-2" aria-label="Technologies used">
+                    {study.data.technologies.map((technology) => (
+                      <li class="rounded-full bg-ink-50 px-2.5 py-1 text-xs font-medium text-ink-600">{technology}</li>
+                    ))}
+                  </ul>
+                )}
+                <p class="mt-4 text-xs text-ink-500">
+                  Led by {study.data.consultant} · Client identity withheld for confidentiality
+                </p>
               </div>
             ))}
           </div>
@@ -182,7 +196,7 @@ const schema = [
         and are comfortable with both India-based and international time zones.
       </p>
       <a
-        href="/contact"
+        href="/contact/"
         class="mt-8 inline-block rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
       >
         Get in Touch
