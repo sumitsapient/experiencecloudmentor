@@ -6,6 +6,8 @@ export function slugifyTag(tag: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+export const primaryBlogTags = ['AEM', 'EDS', 'AEP', 'RTCDP', 'AJO', 'Adobe Target', 'CJA'];
+
 interface TopicGuide {
   title: string;
   description: string;
